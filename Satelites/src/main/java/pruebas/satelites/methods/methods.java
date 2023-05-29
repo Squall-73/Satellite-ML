@@ -1,7 +1,6 @@
 package pruebas.satelites.methods;
 
 import pruebas.satelites.entities.Satellite;
-import pruebas.satelites.exceptions.NotEnoughInformationException;
 
 public class methods {
 
