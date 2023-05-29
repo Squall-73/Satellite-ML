@@ -43,8 +43,8 @@ public class methods {
 				break;
 		}}
 
-		shipx=(d[1]*d[1]-d[2]*d[2]+x[2]*x[2]-x[1]*x[1]+y[2]*y[2]-y[1]*y[1])/(2*(x[2]-x[1]));
-		shipy=(d[1]*d[1]-d[3]*d[3]+x[3]*x[3]-x[1]*x[1]+y[3]*y[3]-y[1]*y[1]+2*shipx*(x[1]-x[3]))/(2*(x[2]-x[1]));
+		shipx=(Math.pow(d[1],2)-Math.pow(d[2],2)+Math.pow(x[2],2)-Math.pow(x[1],2)+Math.pow(y[2],2)-Math.pow(y[1],2))/(2*(x[2]-x[1]));
+		shipy=(Math.pow(d[1],2)-Math.pow(d[3],2)+Math.pow(x[3],2)-Math.pow(x[1],2)+Math.pow(y[3],2)-Math.pow(y[1],2)+2*shipx*(x[1]-x[3]))/(2*(x[2]-x[1]));
 
 		double[] position={shipx,shipy};
 
@@ -89,11 +89,9 @@ public class methods {
 
 					st=messagearray[j][i];
 
-				} else if (messagearray[j][i]!="" && st!="") {
+				} else if (messagearray[j][i]!="" && messagearray[j][i]!=st) {
 
-					if(messagearray[j][i]!=st){
-						throw new NotEnoughInformationException("couldn't decipher message ");
-					}
+					throw new NotEnoughInformationException("couldn't decipher message ");
 
 				}
 
