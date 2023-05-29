@@ -1,6 +1,7 @@
 package pruebas.satelites.methods;
 
 import pruebas.satelites.entities.Satellite;
+import pruebas.satelites.exceptions.NotEnoughInformationException;
 
 public class methods {
 
@@ -50,7 +51,7 @@ public class methods {
 		return position;
 
 		}
-	public String getMessage(Satellite[] satellite){
+	public String getMessage(Satellite[] satellite) throws NotEnoughInformationException{
 
 		String message="";
 
@@ -62,7 +63,7 @@ public class methods {
 			if(satellite[i].getMessage().length<shortestlength){
 
 				shortestlength=satellite[i].getMessage().length;
-			}else{}
+			}
 		}
 
 		//create a array of messages
@@ -78,11 +79,32 @@ public class methods {
 		}
 		}
 
-		///here i have the messages received from the satellites, without gap
-		String[] a=messagearray[1];
-		String[] b=messagearray[2];
-		String[] c=messagearray[3];
+		for(int i=0;i<messagearray[0].length;i++){
 
+				String st="";
+
+			for (int j=0; j<messagearray.length;j++){
+
+				if(messagearray[j][i]!="" && st==""){
+
+					st=messagearray[j][i];
+
+				} else if (messagearray[j][i]!="" && st!="") {
+
+					if(messagearray[j][i]!=st){
+						throw new NotEnoughInformationException("couldn't decipher message ");
+					}
+
+				}
+
+			}
+
+			message=message + st + " ";
+		}
+
+		//Remove last " " at the end of the message
+
+		message = message.trim().replaceAll("\\s+$", "");
 
 		return message;
 	}
